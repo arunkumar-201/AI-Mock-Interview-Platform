@@ -28,10 +28,12 @@ const app = express();
 //    Without this, browsers will block requests from localhost:5173 → localhost:5000
 app.use(cors({
   origin: [
+    'https://ai-mock-interview-platform-two-red.vercel.app',
     'https://ai-mock-interview-platform-5oe8.vercel.app',
     'http://localhost:5173'
-  ]
-}));
+  ],
+  credentials: true
+}));    
 
 // 2. Body Parser: Convert incoming JSON requests to JavaScript objects
 //    10mb limit to handle large resume text and interview data
