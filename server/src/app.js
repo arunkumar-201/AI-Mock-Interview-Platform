@@ -26,7 +26,7 @@ const app = express();
 
 // 1. CORS: Allow our frontend (React) to talk to this backend
 //    Without this, browsers will block requests from localhost:5173 → localhost:5000
-aapp.use(cors({
+app.use(cors({
   origin: [
     'https://ai-mock-interview-platform-5oe8.vercel.app',
     'http://localhost:5173'
