@@ -1,23 +1,25 @@
 // ============================================
 // authService.js - Authentication API Calls
 // ============================================
-// Reference: Axios POST/GET requests - reference-javascript.md
-// ============================================
+
+import API from './api';
 
 const register = async (name, email, password) => {
   const response = await API.post('/api/auth/register', {
     name,
     email,
-    password
+    password,
   });
+
   return response.data.data;
 };
 
 const emailLogin = async (email, password) => {
   const response = await API.post('/api/auth/login', {
     email,
-    password
+    password,
   });
+
   return response.data.data;
 };
 
