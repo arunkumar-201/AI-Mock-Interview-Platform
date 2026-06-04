@@ -32,6 +32,8 @@ export const startInterview = async (userId, role, resumeText, candidateName, to
     questions,
     status: 'in_progress',
   });
+  console.log("CREATED INTERVIEW ID:", interview._id);
+console.log("CREATED USER ID:", userId);
 
   const greetingPrompt = INTERVIEW_GREETING_PROMPT(role, candidateName);
   const greeting = await askGemini(greetingPrompt);
@@ -255,11 +257,22 @@ export const endInterview = async (interviewId, userId) => {
 };
 
 export const getInterviewById = async (interviewId, userId) => {
-  const interview = await Interview.findOne({ _id: interviewId, userId }).select('-__v');
+
+  console.log("SEARCHING INTERVIEW ID:", interviewId);
+  console.log("SEARCHING USER ID:", userId);
+
+  const interview = await Interview.findOne({
+    _id: interviewId,
+    userId
+  }).select('-__v');
+
+  console.log("FOUND INTERVIEW:", interview);
+
   if (!interview) {
     const error = new Error('Interview not found');
     error.statusCode = 404;
     throw error;
   }
+
   return interview;
 };
